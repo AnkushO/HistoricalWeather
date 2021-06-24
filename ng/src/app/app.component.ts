@@ -15,18 +15,20 @@ export class AppComponent {
   submitted = false;
   formStatus = true;
   angForm: FormGroup;
-  responseApi = false;
+  responseApi: any;
   
   constructor(private fb: FormBuilder) {
     this.createForm();
-  }
+  };
   
   createForm() {
     this.angForm = this.fb.group({
        cityName: ['', Validators.required ],
 	   language: ['', Validators.required ]
     });
-  }
+  };
+  
+  ngOnInit(): void {};
   
   onSubmit(){
 	this.submitted = true;  
@@ -38,8 +40,12 @@ export class AppComponent {
 	this.formStatus = true;	
 	const controls = this.angForm.controls;  
 	
+	var global = this;
 	$.get(this.api_url+'?cityName='+controls.cityName.value+'&language='+controls.language.value,function(data){
-		this.responseApi = data;
+		
+		let view_data = JSON.parse(data);
+		global.responseApi = view_data
+		console.log('this.responseApi',global.responseApi);
 	});
-  }
+  };
 }

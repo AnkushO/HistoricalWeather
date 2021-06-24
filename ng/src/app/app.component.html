@@ -303,14 +303,13 @@
 
   <!-- Highlight Card -->
   <div class="card highlight-card card-small">
-    <span>{{ title }} App</span>
-
+    <span>{{ title }}</span>
   </div>
 
 
   <div class="card-container">
-
-    <form [formGroup]="angForm" (ngSubmit)="onSubmit()">
+	
+    <form [formGroup]="angForm">
 
 	  <label for="first-name">*City Name: </label>
 	  <input id="first-name" type="text" formControlName="cityName">
@@ -333,12 +332,10 @@
 		<div *ngIf="!formStatus">
 			Fill all required fields
 		</div>
-		<div>
-		{{ responseApi }}
 	</form>
-
+    
   </div>
-
+	{{ responseApi | json }}
 
 </div>
 
